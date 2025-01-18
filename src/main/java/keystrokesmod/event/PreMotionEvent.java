@@ -13,6 +13,7 @@ public class PreMotionEvent extends Event {
     private static boolean setRenderYaw;
     private boolean isSprinting;
     private boolean isSneaking;
+    public static boolean setRotations;
 
     public PreMotionEvent(double posX, double posY, double posZ, float yaw, float pitch, boolean onGround, boolean isSprinting, boolean isSneaking) {
         this.posX = posX;
@@ -64,10 +65,17 @@ public class PreMotionEvent extends Event {
     public void setYaw(float yaw) {
         this.yaw = yaw;
         this.setRenderYaw = true;
+        setRotations = true;
+    }
+
+    public void setYawSilent(float yaw) {
+        this.yaw = yaw;
+        setRotations = true;
     }
 
     public void setPitch(float pitch) {
         this.pitch = pitch;
+        setRotations = true;
     }
 
     public void setOnGround(boolean onGround) {
@@ -78,9 +86,10 @@ public class PreMotionEvent extends Event {
         return setRenderYaw;
     }
 
-    public void setRenderYaw(boolean setRenderYaw) {
-        this.setRenderYaw = setRenderYaw;
+    public static void setRenderYaw(boolean setYaw) {
+        setRenderYaw = setYaw;
     }
+
     public boolean isSprinting() {
         return isSprinting;
     }
